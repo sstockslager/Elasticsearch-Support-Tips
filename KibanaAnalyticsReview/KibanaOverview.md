@@ -52,7 +52,7 @@ The last main section here is the time selection to limit the queries results to
 
 There are multiple search languages available to query documents in Analytics: 
 
-* [KQL](/ElasticCodeVariations/KQL.md) - Kibana Query Language
-* [DSL](/ElasticCodeVariations/DSL.md) - Domain-Specific Language
-* [EQL](/ElasticCodeVariations/EQL.md) - Event Query Language
-* [ES|QL](/ElasticCodeVariations/ESQL.md) - Elasticsearch Query Language
+* [KQL](/ElasticsearchCodeVariations/KQL.md) - Kibana Query Language
+* [DSL](/ElasticsearchCodeVariations/DSL.md) - Domain-Specific Language
+* [EQL](/ElasticsearchCodeVariations/EQL.md) - Event Query Language
+* [ES|QL](/ElasticsearchCodeVariations/ESQL.md) - Elasticsearch Query Language

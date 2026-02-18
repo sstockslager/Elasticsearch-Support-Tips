@@ -8,7 +8,7 @@ The Elastic Security Stack hold hundreds of detections to help Analysts set up a
 
 ### KQL
 
-[Kibana Query Language](/ElasticCodeVariations/KQL.md), or KQL, is the most basic version of alert makeup. It is considered a one-for-one match between the query itself and the matching documents. Essentially, any query that is generated in the Discover page can be transferred to the Security Stack to be alerted on. Some examples of a KQL detection are shown below:
+[Kibana Query Language](/ElasticsearchCodeVariations/KQL.md), or KQL, is the most basic version of alert makeup. It is considered a one-for-one match between the query itself and the matching documents. Essentially, any query that is generated in the Discover page can be transferred to the Security Stack to be alerted on. Some examples of a KQL detection are shown below:
 ```
 data_stream.dataset: "system.security" AND event.code: "4625" AND user.name: "administrator"
 
@@ -19,7 +19,7 @@ user.id : "S-1-5-18" and event.action: "start" AND NOT process.args: "C:\windows
 
 ### EQL
 
-[Event Query Language](/ElasticCodeVariations/EQL.md), or EQL, is a separate language designed with correlation and event order in mind. This makes it particularly powerful when it comes to threat hunting. The example below is an EQL rule that is looking for a user that ran all three executions within a span of 10 minutes. 
+[Event Query Language](/ElasticsearchCodeVariations/EQL.md), or EQL, is a separate language designed with correlation and event order in mind. This makes it particularly powerful when it comes to threat hunting. The example below is an EQL rule that is looking for a user that ran all three executions within a span of 10 minutes. 
 ```
 sequence by user.name with maxspan=10m 
 [process where process.name == "cmdl.exe"]
@@ -29,7 +29,7 @@ sequence by user.name with maxspan=10m
 
 ### ES|QL
 
-[Elasticsearch Query Language](/ElasticCodeVariations/ESQL.md), while like SQL, is newer addition to Kibana designed to expand upon KQL to provide more advanced statistical analysis and aggregation. In addition to a more optimized search performance, the expanded command structure allowed for more in-depth log analysis to uncover potential security risks. The example below returns when the destination IP address is not local and the number of bytes being sent over NetFlow is over 1000. 
+[Elasticsearch Query Language](/ElasticsearchCodeVariations/ESQL.md), while like SQL, is newer addition to Kibana designed to expand upon KQL to provide more advanced statistical analysis and aggregation. In addition to a more optimized search performance, the expanded command structure allowed for more in-depth log analysis to uncover potential security risks. The example below returns when the destination IP address is not local and the number of bytes being sent over NetFlow is over 1000. 
 ```
 FROM logs-netflow.log*
 | KEEP source.ip, destination.ip, source.bytes, destination.bytes
