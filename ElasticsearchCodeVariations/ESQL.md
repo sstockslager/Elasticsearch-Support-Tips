@@ -116,3 +116,39 @@ FROM logs-system.security-windows
 | WHERE event.code=="4728" AND winlog.event_data.SubjectUserSid==winlog.event_data.MemberSid
 | LIMIT 10
 ```
+
+- Similar to the above query, hunting for documents where the value of one fields equals another can be powerful in multiple use cases, especially in threat hunting. 
+```
+FROM logs-*
+| WHERE source.ip IS NOT NULL
+| LOOKUP JOIN logs-ti_* ON source.ip==threat.indicator.ip
+| WHERE threat.indicator.confidence >= 80
+| KEEP @timestamp,
+        source.ip,
+        destination.ip,
+        threat.indicator.ip,
+        threat.indicator.type,
+        threat.indicator.description,
+        threat.indicator.confidence
+```
+There may be an issue that occurs when the threat.indicator.ip field is stored as a field type _keyword_ instead of _ip_. If this happens, then convert one of the fields before the LOOKUP JOIN.
+```
+| EVAL source_ip_str = TO_STRING(source.ip)
+```
+NOTE an error may occur on the LOOKUP JOIN that may prevent query execution. On the index that is being queried to match against, that index needs to be previously configured as a lookup index. ES|QL cannot create a lookup index of that data on the fly. Usually during the query when you input the index after the LOOKUP JOIN command, it will preload the list of any available lookup indices. 
+
+In this example, if there is a threat intel feed that is already ingesting into Elastic, but is not appearing as a lookup index, the setting for that index will likely need to be updated and then reindexed. This can be accomplished via DevTools: 
+```
+PUT threat-intel-lookup
+{
+    "settings": {
+        "index.mode": "lookup
+    }
+}
+
+POST _reindex
+{
+    "source": { "index": "threat-intel-raw"},
+    "dest": { "index": "threat-intel-lookup"}
+}
+```
