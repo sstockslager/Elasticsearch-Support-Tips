@@ -149,6 +149,6 @@ PUT threat-intel-lookup
 POST _reindex
 {
     "source": { "index": "threat-intel-raw"},
-    "dest": { "index": "threat-intel-lookup"}
+    "dest": { "index": "threat-intel-lookup" }
 }
 ```
