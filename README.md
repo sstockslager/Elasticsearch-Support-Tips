@@ -4,7 +4,7 @@
 Welcome to the internal repository for Elasticsearch Support Tips! This project serves as a structured location for essential tips, hidden "gotchas", and some foundational concepts that are not always apparent within standard documentation.
 
 ### _Core Skills, Small Tricks, and Big Impacts_
-Currently, there are three major sections: 
+Currently, there are several major sections: 
 - _Elasticsearch Code Variations_ are for the different code bases and query languages that are present in Elastic, and also provides multiple examples to showcase the varying functions.
 - _Kibana Analytics Review_ is meant for some of the main front-end capabilities within Kibana, such as Discover and Machine Learning - all your ingested data in one place.
 - _Security App Review_ is for the Analysts and Security Engineers out there. Anything SIEM-related, security monitoring, setup, and overall Elastic Security Capabilities will be here.

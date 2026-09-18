@@ -142,13 +142,13 @@ In this example, if there is a threat intel feed that is already ingesting into 
 PUT threat-intel-lookup
 {
     "settings": {
-        "index.mode": "lookup
+        "index.mode": "lookup"
     }
 }
 
 POST _reindex
 {
     "source": { "index": "threat-intel-raw"},
-    "dest": { "index": "threat-intel-lookup" }
+    "dest": { "index": "threat-intel-lookup"}
 }
 ```
